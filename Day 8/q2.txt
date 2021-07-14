@@ -1,0 +1,28 @@
+/*most common word*/
+
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        map<string ,int > words;
+        set<string> s(banned.begin(),banned.end());
+        string word,res;
+        
+        for(int i=0;i<paragraph.length();i++){
+            paragraph[i]= isalpha(paragraph[i])?tolower(paragraph[i]):' ';
+            
+            int flag=0;
+            stringstream ss(paragraph);
+            while(ss>>word)
+            {
+                if(!s.count(word))
+                    words[word]++ ;
+                    if(words[word]>flag){
+                        flag=words[word];
+                        res=word;
+                    }
+                }
+            }
+                   return res;
+        }
+    
+};

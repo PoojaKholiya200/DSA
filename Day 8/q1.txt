@@ -1,0 +1,30 @@
+/*keyboard row*/
+
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> vec={"qwertyuiop","asdfghjkl","zxcvbnm"};
+        unordered_map<char,int> map;
+        for(int i=0;i<vec.size();i++){
+            for(int j=0;j<vec[i].size();j++)
+                map[vec[i][j]]= i+1;
+        }
+        
+        vector<string> res;
+        for(int i=0;i<words.size();i++)
+        {
+            int flag=0;
+            for(int j=1;j<words[i].size();j++)
+            {
+                if(map[tolower(words[i][j])]!=map[tolower(words[i][j-1])])
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0)
+                res.push_back(words[i]);
+        }
+        return res;
+    }
+};
