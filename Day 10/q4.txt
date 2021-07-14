@@ -1,0 +1,26 @@
+/*binary watch*/
+
+class Solution {
+public:
+    vector<string> readBinaryWatch(int turnedOn) {
+          string s;
+        int n= turnedOn;
+        vector<string> v;
+        for(int i=0;i<12;++i)
+        {
+            for(int j=0;j<60;++j)
+            {
+                int a=__builtin_popcount(i);
+                int b=__builtin_popcount(j);
+                if(a+b==n)
+                {
+                    s+=to_string(i);
+                    s+=(j<10?":0":":");
+                    s+=to_string(j);
+                    v.push_back(s);
+                    s="";
+                }
+            }
+        }return v;  
+    }
+};
